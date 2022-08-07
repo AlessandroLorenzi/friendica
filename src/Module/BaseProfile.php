@@ -76,30 +76,15 @@ class BaseProfile extends BaseModule
 				'id'    => 'media-tab',
 				'accesskey' => 'd',
 			],
-		];
-
-		// the calendar link for the full featured events calendar
-		if ($is_owner && $a->getThemeInfoValue('events_in_profile')) {
-			$tabs[] = [
+			[
 				'label' => DI::l10n()->t('Events'),
-				'url'   => DI::baseUrl() . '/events',
+				'url'   => $baseProfileUrl . '/events',
 				'sel'   => $current == 'events' ? 'active' : '',
 				'title' => DI::l10n()->t('Events and Calendar'),
 				'id'    => 'events-tab',
 				'accesskey' => 'e',
-			];
-			// if the user is not the owner of the calendar we only show a calendar
-			// with the public events of the calendar owner
-		} elseif (!$is_owner) {
-			$tabs[] = [
-				'label' => DI::l10n()->t('Events'),
-				'url'   => DI::baseUrl() . '/cal/' . $nickname,
-				'sel'   => $current == 'cal' ? 'active' : '',
-				'title' => DI::l10n()->t('Events and Calendar'),
-				'id'    => 'events-tab',
-				'accesskey' => 'e',
-			];
-		}
+			],
+		];
 
 		if ($is_owner) {
 			$tabs[] = [
